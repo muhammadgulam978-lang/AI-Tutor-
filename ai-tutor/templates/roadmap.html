@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Personalized Roadmap</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; }
+        .level-badge {
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .roadmap-timeline {
+            margin-top: 30px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 3px solid #bdc3c7;
+        }
+        .step-block {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .step-block::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #95a5a6;
+            border: 2px solid white;
+        }
+        .step-block.Completed::before { background-color: #2ecc71; }
+        .step-block.In-Progress::before { background-color: #f1c40f; }
+        .step-block.Current::before { background-color: #3498db; }
+        .step-block.Locked::before { background-color: #e74c3c; }
+
+        .status-tag {
+            font-size: 12px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+            float: right;
+        }
+        .Completed .status-tag { background: #d4edda; color: #155724; }
+        .In-Progress .status-tag { background: #fff3cd; color: #856404; }
+        .Current .status-tag { background: #d1ecf1; color: #0c5460; }
+        .Locked .status-tag { background: #f8d7da; color: #721c24; }
+
+        .step-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        .step-title { font-weight: bold; font-size: 18px; margin: 0 0 8px 0; }
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🗺️ Your AI Personalized Learning Path</h1>
+        <p>Current Verified Skill Tier: <span class="level-badge">{{ level }}</span></p>
+        <hr>
+
+        <div class="roadmap-timeline">
+            {% for step in steps %}
+                <div class="step-block {{ step.status.replace(' ', '-') }}">
+                    <div class="step-card">
+                        <span class="status-tag">{{ step.status }}</span>
+                        <p class="step-title">{{ step.title }}</p>
+                        <p style="margin: 0; color: #555;">{{ step.desc }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <a href="/dashboard" class="btn-back">⬅ Back to Dashboard</a>
+    </div>
+
+</body>
+</html>
