@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Analytics Dashboard</title>
+</head>
+<body>
+
+    <h1>📊 AI Student Analytics Dashboard</h1>
+
+    <hr>
+
+    <!-- ========================= -->
+    <!-- 📈 GRAPH SECTION -->
+    <!-- ========================= -->
+    <h2>📈 Progress Graph</h2>
+
+    {% if graph %}
+        <img src="{{ graph }}" width="600">
+    {% else %}
+        <p>No graph available</p>
+    {% endif %}
+
+    <hr>
+
+    <!-- ========================= -->
+    <!-- TABLE -->
+    <!-- ========================= -->
+    <h2>Student Progress Overview</h2>
+
+    {% if history %}
+        <table border="1" cellpadding="10">
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Score</th>
+                <th>Level</th>
+                <th>Weak Areas</th>
+                <th>Recommendations</th>
+                <th>Date</th>
+            </tr>
+
+            {% for row in history %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No data found</p>
+    {% endif %}
+
+    <hr>
+
+    <!-- ========================= -->
+    <!-- AI INSIGHTS -->
+    <!-- ========================= -->
+    <h2>📊 AI Insights</h2>
+
+    {% if avg_score is not none %}
+        {% if avg_score >= 1 %}
+            <p>🔥 Performance: Good</p>
+        {% else %}
+            <p>❌ Performance: Needs Improvement</p>
+        {% endif %}
+    {% else %}
+        <p>No analytics available</p>
+    {% endif %}
+
+    <hr>
+
+    <a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>

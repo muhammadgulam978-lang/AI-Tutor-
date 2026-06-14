@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Result</title>
+</head>
+<body>
+
+    <h1>AI Tutor Result 🎓</h1>
+
+    <h2>Score: {{ score }}/2</h2>
+
+    <h3>Level: {{ level }}</h3>
+
+    <hr>
+
+    <h3>Weak Areas:</h3>
+
+    {% if weak_topics %}
+        <ul>
+        {% for t in weak_topics %}
+            <li>{{ t }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No weak areas 🎉</p>
+    {% endif %}
+
+    <hr>
+
+    <h3>Recommendations:</h3>
+
+    {% if recommendations %}
+        <ul>
+        {% for r in recommendations %}
+            <li>{{ r }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <br>
+
+    <a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>
